@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Actors/Bosses/Bass/bass_frames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://src/Actors/Enemies/Shared/LongBossDeath.tscn" type="PackedScene" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://src/Effects/Materials/default_material.tres" type="Material" id=13]
 [ext_resource path="res://src/Sounds/HIT_BOSS.wav" type="AudioStream" id=14]
 [ext_resource path="res://src/Actors/Bosses/Bass/Bass.gd" type="Script" id=15]
+[ext_resource path="res://src/HUD/Bass_bar.png" type="Texture" id=16]
+[ext_resource path="res://src/Actors/Bosses/Bass/BassRunShoot.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13, 24 )
@@ -63,6 +65,7 @@ scale = Vector2( 4, 4 )
 script = ExtResource( 4 )
 actions = [ "Event" ]
 animation = "intro"
+boss_bar = ExtResource( 16 )
 
 [node name="Idle" type="Node2D" parent="."]
 script = ExtResource( 5 )
@@ -103,11 +106,18 @@ floor_time = 0.08
 script = ExtResource( 8 )
 projectile = ExtResource( 11 )
 
+[node name="RunShoot" type="Node2D" parent="."]
+script = ExtResource( 17 )
+projectile = ExtResource( 11 )
+
 [node name="Hop" type="Node2D" parent="."]
 script = ExtResource( 9 )
-hop_velocity = 320.0
+hop_velocity = 190.0
 
 [node name="Dash" type="Node2D" parent="."]
 script = ExtResource( 10 )
+dash_speed = 210.0
+dash_time = 0.55
+dash_sprite_offset_y = 12.0
 
 [editable path="BossDeath"]

@@ -1,6 +1,19 @@
-[gd_resource type="SpriteFrames" load_steps=92 format=2]
+[gd_resource type="SpriteFrames" load_steps=101 format=2]
 
 [ext_resource path="res://src/Actors/Bosses/Bass/bass_sheet.png" type="Texture" id=1]
+[ext_resource path="res://src/Actors/Bosses/Bass/fall_frames/fall_1.png" type="Texture" id=2]
+[ext_resource path="res://src/Actors/Bosses/Bass/fall_frames/fall_2.png" type="Texture" id=3]
+[ext_resource path="res://src/Actors/Bosses/Bass/fall_frames/fall_3.png" type="Texture" id=4]
+[ext_resource path="res://src/Actors/Bosses/Bass/fall_frames/fall_4.png" type="Texture" id=5]
+[ext_resource path="res://src/Actors/Bosses/Bass/dash_frames/dash_1.png" type="Texture" id=6]
+[ext_resource path="res://src/Actors/Bosses/Bass/dash_frames/dash_2.png" type="Texture" id=7]
+[ext_resource path="res://src/Actors/Bosses/Bass/dash_frames/dash_3.png" type="Texture" id=8]
+[ext_resource path="res://src/Actors/Bosses/Bass/dash_frames/dash_4.png" type="Texture" id=9]
+[ext_resource path="res://src/Actors/Bosses/Bass/run_shoot_frames/run_shoot_1.png" type="Texture" id=10]
+[ext_resource path="res://src/Actors/Bosses/Bass/run_shoot_frames/run_shoot_2.png" type="Texture" id=11]
+[ext_resource path="res://src/Actors/Bosses/Bass/run_shoot_frames/run_shoot_3.png" type="Texture" id=12]
+[ext_resource path="res://src/Actors/Bosses/Bass/run_shoot_frames/run_shoot_4.png" type="Texture" id=13]
+[ext_resource path="res://src/Actors/Bosses/Bass/run_shoot_frames/run_shoot_5.png" type="Texture" id=14]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -389,7 +402,7 @@ animations = [ {
 "name": "jump",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "fall",
 "speed": 10.0
@@ -397,6 +410,11 @@ animations = [ {
 "frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ) ],
 "loop": true,
 "name": "run",
+"speed": 14.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "run_shoot",
 "speed": 14.0
 }, {
 "frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ) ],
@@ -413,4 +431,9 @@ animations = [ {
 "loop": true,
 "name": "death",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": false,
+"name": "dash",
+"speed": 14.0
 } ]

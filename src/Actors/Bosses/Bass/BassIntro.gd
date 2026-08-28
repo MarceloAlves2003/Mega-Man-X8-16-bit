@@ -3,6 +3,7 @@ extends "res://src/Actors/Bosses/BossIntro.gd"
 export var intro_start_height := 144.0
 export var fall_speed := 96.0
 export var settle_time := 0.25
+export var boss_bar: Texture
 
 var landing_position := Vector2.ZERO
 var landed := false
@@ -80,6 +81,8 @@ func finish_intro() -> void:
 	Event.emit_signal("play_boss_music")
 	Event.emit_signal("boss_start", character)
 	if show_health:
+		if boss_bar != null:
+			Event.emit_signal("set_boss_bar", boss_bar)
 		Event.emit_signal("boss_health_appear", character)
 	EndAbility()
 
