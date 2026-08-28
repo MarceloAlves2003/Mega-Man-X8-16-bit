@@ -1,0 +1,113 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://src/Actors/Bosses/Bass/bass_frames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://src/Actors/Enemies/Shared/LongBossDeath.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Actors/Bosses/BossAI.gd" type="Script" id=3]
+[ext_resource path="res://src/Actors/Bosses/Bass/BassIntro.gd" type="Script" id=4]
+[ext_resource path="res://src/Actors/Bosses/DarkMantis/Idle.gd" type="Script" id=5]
+[ext_resource path="res://src/Actors/Bosses/Bass/BassDamage.gd" type="Script" id=6]
+[ext_resource path="res://src/Actors/Modules/Enemy/DamageOnTouch.gd" type="Script" id=7]
+[ext_resource path="res://src/Actors/Bosses/Bass/BassStraightShot.gd" type="Script" id=8]
+[ext_resource path="res://src/Actors/Bosses/Bass/BassHop.gd" type="Script" id=9]
+[ext_resource path="res://src/Actors/Bosses/Bass/BassDash.gd" type="Script" id=10]
+[ext_resource path="res://src/Actors/Bosses/Bass/BassProjectile.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Actors/Bosses/Bass/BassHitReaction.gd" type="Script" id=12]
+[ext_resource path="res://src/Effects/Materials/default_material.tres" type="Material" id=13]
+[ext_resource path="res://src/Sounds/HIT_BOSS.wav" type="AudioStream" id=14]
+[ext_resource path="res://src/Actors/Bosses/Bass/Bass.gd" type="Script" id=15]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13, 24 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 15, 27 )
+
+[node name="Bass" type="KinematicBody2D" groups=["Bosses"]]
+z_index = 5
+collision_layer = 0
+script = ExtResource( 15 )
+max_health = 128.0
+
+[node name="BossAI" type="Node2D" parent="."]
+script = ExtResource( 3 )
+time_between_attacks = Vector2( 0.35, 0.9 )
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8 )
+shape = SubResource( 1 )
+
+[node name="animatedSprite" type="AnimatedSprite" parent="."]
+material = ExtResource( 13 )
+position = Vector2( 0, 4 )
+z_index = 1
+frames = ExtResource( 1 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+input_pickable = false
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="area2D"]
+position = Vector2( 0, 6 )
+shape = SubResource( 2 )
+
+[node name="visibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
+position = Vector2( 0, 4 )
+scale = Vector2( 4, 4 )
+
+[node name="Intro" type="Node2D" parent="."]
+script = ExtResource( 4 )
+actions = [ "Event" ]
+animation = "intro"
+
+[node name="Idle" type="Node2D" parent="."]
+script = ExtResource( 5 )
+conflicting_moves = [ "Anything" ]
+animation = "idle"
+
+[node name="Damage" type="Node2D" parent="."]
+script = ExtResource( 6 )
+invulnerability_time = 1.75
+max_flash_time = 1.75
+
+[node name="audioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Damage"]
+pause_mode = 2
+stream = ExtResource( 14 )
+max_distance = 600.0
+bus = "SFX"
+
+[node name="DamageOnTouch" type="Node2D" parent="."]
+script = ExtResource( 7 )
+damage = 6.0
+
+[node name="BossDeath" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 0 )
+death_animation = "death"
+collectible = "neongrid_clear"
+defeated_flag = "neongrid_bass_defeated"
+
+[node name="BossStun" type="Node2D" parent="."]
+script = ExtResource( 12 )
+conflicting_moves = [ "BossDeath" ]
+actions = [ "Event" ]
+animation = "damage"
+horizontal_velocity = 45.0
+jump_velocity = 190.0
+floor_time = 0.08
+
+[node name="StraightShot" type="Node2D" parent="."]
+script = ExtResource( 8 )
+projectile = ExtResource( 11 )
+
+[node name="Hop" type="Node2D" parent="."]
+script = ExtResource( 9 )
+hop_velocity = 320.0
+
+[node name="Dash" type="Node2D" parent="."]
+script = ExtResource( 10 )
+
+[editable path="BossDeath"]

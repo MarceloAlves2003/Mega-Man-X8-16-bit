@@ -1,0 +1,339 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://src/Levels/base_stage.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Sounds/OST - TroiaBase 1 - Intro.ogg" type="AudioStream" id=2]
+[ext_resource path="res://src/Sounds/OST - TroiaBase 1 - Loop.ogg" type="AudioStream" id=3]
+[ext_resource path="res://src/System/CameraLimits.gd" type="Script" id=4]
+[ext_resource path="res://src/Actors/Bosses/Bass/Bass.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Levels/NeonGrid/NeonGridBossStart.gd" type="Script" id=6]
+[ext_resource path="res://src/Actors/Enemies/Turret/Turret.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Objects/Pickups/ExtraLife.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Objects/Pickups/Ammo.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Levels/NeonGrid/NeonGridHazard.gd" type="Script" id=10]
+[ext_resource path="res://System/Character_Spawner.gd" type="Script" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1260, 150 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 700, 16 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 92, 8 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 58, 8 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 16, 120 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 16, 136 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 1520, 44 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 160, 16 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 340, 16 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 16, 136 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 16, 62 )
+
+[node name="NeonGrid" instance=ExtResource( 1 )]
+script = ExtResource( 11 )
+
+[node name="Music Player" parent="." index="1"]
+stage_intro = ExtResource( 2 )
+stage_song = ExtResource( 3 )
+
+[node name="CharacterPosition" parent="." index="3"]
+position = Vector2( -560, 80 )
+
+[node name="Collision" parent="Scenery" index="0"]
+visible = false
+
+[node name="Ground" type="StaticBody2D" parent="Scenery"]
+position = Vector2( 0, 112 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/Ground"]
+shape = SubResource( 2 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/Ground"]
+z_index = -2
+color = Color( 0.08, 0.16, 0.24, 1 )
+polygon = PoolVector2Array( -700, -16, 700, -16, 700, 16, -700, 16 )
+
+[node name="GroundGlow" type="Polygon2D" parent="Scenery/Ground"]
+z_index = -1
+color = Color( 0, 0.95, 0.85, 0.5 )
+polygon = PoolVector2Array( -700, -18, 700, -18, 700, -12, -700, -12 )
+
+[node name="LeftWall" type="StaticBody2D" parent="Scenery"]
+position = Vector2( -690, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/LeftWall"]
+shape = SubResource( 5 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/LeftWall"]
+z_index = -2
+color = Color( 0.08, 0.16, 0.24, 1 )
+polygon = PoolVector2Array( -16, -120, 16, -120, 16, 120, -16, 120 )
+
+[node name="PlatformA" type="StaticBody2D" parent="Scenery"]
+position = Vector2( -330, 36 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/PlatformA"]
+shape = SubResource( 3 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/PlatformA"]
+z_index = -2
+color = Color( 0.13, 0.24, 0.34, 1 )
+polygon = PoolVector2Array( -92, -8, 92, -8, 92, 8, -92, 8 )
+
+[node name="PlatformAGlow" type="Polygon2D" parent="Scenery/PlatformA"]
+z_index = -1
+color = Color( 0.94, 0.3, 0.78, 0.55 )
+polygon = PoolVector2Array( -92, -10, 92, -10, 92, -6, -92, -6 )
+
+[node name="PlatformB" type="StaticBody2D" parent="Scenery"]
+position = Vector2( -84, -34 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/PlatformB"]
+shape = SubResource( 4 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/PlatformB"]
+z_index = -2
+color = Color( 0.13, 0.24, 0.34, 1 )
+polygon = PoolVector2Array( -58, -8, 58, -8, 58, 8, -58, 8 )
+
+[node name="PlatformBGlow" type="Polygon2D" parent="Scenery/PlatformB"]
+z_index = -1
+color = Color( 0, 0.95, 0.85, 0.55 )
+polygon = PoolVector2Array( -58, -10, 58, -10, 58, -6, -58, -6 )
+
+[node name="PlatformC" type="StaticBody2D" parent="Scenery"]
+position = Vector2( 150, 26 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/PlatformC"]
+shape = SubResource( 3 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/PlatformC"]
+z_index = -2
+color = Color( 0.13, 0.24, 0.34, 1 )
+polygon = PoolVector2Array( -92, -8, 92, -8, 92, 8, -92, 8 )
+
+[node name="PlatformCGlow" type="Polygon2D" parent="Scenery/PlatformC"]
+z_index = -1
+color = Color( 0.94, 0.3, 0.78, 0.55 )
+polygon = PoolVector2Array( -92, -10, 92, -10, 92, -6, -92, -6 )
+
+[node name="PlatformD" type="StaticBody2D" parent="Scenery"]
+position = Vector2( 392, -42 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/PlatformD"]
+shape = SubResource( 4 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/PlatformD"]
+z_index = -2
+color = Color( 0.13, 0.24, 0.34, 1 )
+polygon = PoolVector2Array( -58, -8, 58, -8, 58, 8, -58, 8 )
+
+[node name="PlatformDGlow" type="Polygon2D" parent="Scenery/PlatformD"]
+z_index = -1
+color = Color( 0, 0.95, 0.85, 0.55 )
+polygon = PoolVector2Array( -58, -10, 58, -10, 58, -6, -58, -6 )
+
+[node name="TransitionFloor" type="StaticBody2D" parent="Scenery"]
+position = Vector2( 850, 112 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/TransitionFloor"]
+shape = SubResource( 8 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/TransitionFloor"]
+z_index = -2
+color = Color( 0.08, 0.16, 0.24, 1 )
+polygon = PoolVector2Array( -160, -16, 160, -16, 160, 16, -160, 16 )
+
+[node name="TransitionGlow" type="Polygon2D" parent="Scenery/TransitionFloor"]
+z_index = -1
+color = Color( 0, 0.95, 0.85, 0.5 )
+polygon = PoolVector2Array( -160, -18, 160, -18, 160, -12, -160, -12 )
+
+[node name="BossRoomFloor" type="StaticBody2D" parent="Scenery"]
+position = Vector2( 1340, 112 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/BossRoomFloor"]
+shape = SubResource( 9 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/BossRoomFloor"]
+z_index = -2
+color = Color( 0.1, 0.18, 0.26, 1 )
+polygon = PoolVector2Array( -340, -16, 340, -16, 340, 16, -340, 16 )
+
+[node name="BossFloorGlow" type="Polygon2D" parent="Scenery/BossRoomFloor"]
+z_index = -1
+color = Color( 0.94, 0.3, 0.78, 0.5 )
+polygon = PoolVector2Array( -340, -18, 340, -18, 340, -12, -340, -12 )
+
+[node name="BossRoomCeiling" type="StaticBody2D" parent="Scenery"]
+position = Vector2( 1340, -128 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/BossRoomCeiling"]
+shape = SubResource( 9 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/BossRoomCeiling"]
+z_index = -2
+color = Color( 0.1, 0.18, 0.26, 1 )
+polygon = PoolVector2Array( -340, -16, 340, -16, 340, 16, -340, 16 )
+
+[node name="CeilingGlow" type="Polygon2D" parent="Scenery/BossRoomCeiling"]
+z_index = -1
+color = Color( 0, 0.95, 0.85, 0.45 )
+polygon = PoolVector2Array( -340, 12, 340, 12, 340, 18, -340, 18 )
+
+[node name="BossRoomEntranceTop" type="StaticBody2D" parent="Scenery"]
+position = Vector2( 1000, -82 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/BossRoomEntranceTop"]
+shape = SubResource( 11 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/BossRoomEntranceTop"]
+z_index = -2
+color = Color( 0.1, 0.18, 0.26, 1 )
+polygon = PoolVector2Array( -16, -62, 16, -62, 16, 62, -16, 62 )
+
+[node name="EntranceGlow" type="Polygon2D" parent="Scenery/BossRoomEntranceTop"]
+z_index = -1
+color = Color( 0.94, 0.3, 0.78, 0.5 )
+polygon = PoolVector2Array( -18, -62, -12, -62, -12, 62, -18, 62 )
+
+[node name="BossGate" type="StaticBody2D" parent="Scenery"]
+visible = false
+position = Vector2( 1000, 42 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/BossGate"]
+disabled = true
+shape = SubResource( 11 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/BossGate"]
+z_index = 3
+color = Color( 0.08, 0.13, 0.18, 1 )
+polygon = PoolVector2Array( -16, -62, 16, -62, 16, 62, -16, 62 )
+
+[node name="GateGlow" type="Polygon2D" parent="Scenery/BossGate"]
+z_index = 4
+color = Color( 0.94, 0.3, 0.78, 0.75 )
+polygon = PoolVector2Array( -18, -62, -12, -62, -12, 62, -18, 62 )
+
+[node name="BossRoomRightWall" type="StaticBody2D" parent="Scenery"]
+position = Vector2( 1680, -8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scenery/BossRoomRightWall"]
+shape = SubResource( 10 )
+
+[node name="Visual" type="Polygon2D" parent="Scenery/BossRoomRightWall"]
+z_index = -2
+color = Color( 0.1, 0.18, 0.26, 1 )
+polygon = PoolVector2Array( -16, -136, 16, -136, 16, 136, -16, 136 )
+
+[node name="RightWallGlow" type="Polygon2D" parent="Scenery/BossRoomRightWall"]
+z_index = -1
+color = Color( 0.94, 0.3, 0.78, 0.5 )
+polygon = PoolVector2Array( -18, -136, -12, -136, -12, 136, -18, 136 )
+
+[node name="BackPanel" type="Polygon2D" parent="Scenery"]
+z_index = -10
+color = Color( 0.015, 0.02, 0.035, 1 )
+polygon = PoolVector2Array( -760, -180, 1740, -180, 1740, 142, -760, 142 )
+
+[node name="GridLineA" type="Polygon2D" parent="Scenery"]
+z_index = -9
+color = Color( 0, 0.45, 0.5, 0.28 )
+polygon = PoolVector2Array( -760, -90, 1740, -90, 1740, -86, -760, -86 )
+
+[node name="GridLineB" type="Polygon2D" parent="Scenery"]
+z_index = -9
+color = Color( 0.75, 0.1, 0.55, 0.25 )
+polygon = PoolVector2Array( -500, -180, -496, -180, -496, 142, -500, 142 )
+
+[node name="GridLineC" type="Polygon2D" parent="Scenery"]
+z_index = -9
+color = Color( 0, 0.45, 0.5, 0.28 )
+polygon = PoolVector2Array( 0, -180, 4, -180, 4, 142, 0, 142 )
+
+[node name="GridLineD" type="Polygon2D" parent="Scenery"]
+z_index = -9
+color = Color( 0.75, 0.1, 0.55, 0.25 )
+polygon = PoolVector2Array( 500, -180, 504, -180, 504, 142, 500, 142 )
+
+[node name="BossRoomPanel" type="Polygon2D" parent="Scenery"]
+z_index = -8
+color = Color( 0.025, 0.03, 0.055, 1 )
+polygon = PoolVector2Array( 1000, -144, 1680, -144, 1680, 128, 1000, 128 )
+
+[node name="BossGridLineA" type="Polygon2D" parent="Scenery"]
+z_index = -7
+color = Color( 0, 0.45, 0.5, 0.24 )
+polygon = PoolVector2Array( 1000, 28, 1680, 28, 1680, 32, 1000, 32 )
+
+[node name="BossGridLineB" type="Polygon2D" parent="Scenery"]
+z_index = -7
+color = Color( 0.75, 0.1, 0.55, 0.22 )
+polygon = PoolVector2Array( 1224, -144, 1228, -144, 1228, 128, 1224, 128 )
+
+[node name="BossGridLineC" type="Polygon2D" parent="Scenery"]
+z_index = -7
+color = Color( 0, 0.45, 0.5, 0.24 )
+polygon = PoolVector2Array( 1452, -144, 1456, -144, 1456, 128, 1452, 128 )
+
+[node name="Turret" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( -120, -58 )
+
+[node name="Turret2" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 232, 2 )
+
+[node name="ExtraLife" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 392, -66 )
+
+[node name="AmmoPickup" parent="Objects" instance=ExtResource( 9 )]
+position = Vector2( -340, 8 )
+
+[node name="BassStart" type="Area2D" parent="Objects"]
+position = Vector2( 1120, -8 )
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 6 )
+gate_path = NodePath("../../Scenery/BossGate")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/BassStart"]
+shape = SubResource( 6 )
+
+[node name="Bass" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( 1420, 64 )
+
+[node name="DeathZone" type="Area2D" parent="Objects"]
+position = Vector2( 460, 220 )
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/DeathZone"]
+shape = SubResource( 7 )
+
+[node name="Main" type="Area2D" parent="Limits"]
+collision_layer = 2048
+collision_mask = 0
+script = ExtResource( 4 )
+
+[node name="collisionShape2D" type="CollisionShape2D" parent="Limits/Main"]
+position = Vector2( 500, -18 )
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="Objects/BassStart" to="Objects/BassStart" method="_on_body_entered"]
+[connection signal="body_entered" from="Objects/DeathZone" to="Objects/DeathZone" method="_on_body_entered"]

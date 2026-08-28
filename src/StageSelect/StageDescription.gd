@@ -22,12 +22,13 @@ func clear() -> void :
 	shadow.percent_visible = 0
 
 func on_stage_selected(info: StageInfo) -> void :
-	var boss_name = tr(info.get_boss())
+	var stage_name = _translated_or_fallback(info.get_name(), _fallback_stage_name(info))
+	var boss_name = _translated_or_fallback(info.get_boss(), _fallback_boss_name(info))
 	if info.beaten_condition.size() > 0:
 		boss_name = "?????"
-	text = tr("STAGE_DC") + ": \n    " + tr(info.get_name())
+	text = tr("STAGE_DC") + ": \n    " + stage_name
 	text += "\n" + tr("BOSS_DC") + ": \n    " + boss_name
-	if has_weapon(info):
+	if has_completion_unlocked(info):
 		text += "\n" + tr("COMPLETION_DC") + ": \n    " + get_stage_completion_percentage(info) + "%"
 	shadow.text = text
 	clear()
@@ -60,10 +61,28 @@ func get_stage_completion_percentage(info: StageInfo) -> String:
 		total_items = 1
 	return str(collected_items / total_items * 100).substr(0, 4)
 
-func has_weapon(info: StageInfo) -> bool:
+func has_completion_unlocked(info: StageInfo) -> bool:
+	if info.save_flag != "" and info.save_flag in GameManager.collectibles and info.collectibles.size() > 0:
+		return true
 	for item in info.collectibles:
 		if "finished_intro" in item:
 			return item in GameManager.collectibles
 		if "weapon" in item:
 			return item in GameManager.collectibles
 	return false
+
+func _translated_or_fallback(key: String, fallback: String) -> String:
+	var translated := tr(key)
+	if translated == key:
+		return fallback
+	return translated
+
+func _fallback_stage_name(info: StageInfo) -> String:
+	if info.name_id == "NEONGRID":
+		return "Neon Grid"
+	return info.get_load_name()
+
+func _fallback_boss_name(info: StageInfo) -> String:
+	if info.name_id == "NEONGRID":
+		return "Bonus"
+	return info.name_id

@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=2]
+[gd_scene load_steps=121 format=2]
 
 [ext_resource path="res://src/Options/KeyConfig.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Options/Options.tscn" type="PackedScene" id=2]
@@ -66,6 +66,7 @@
 [ext_resource path="res://System/SFX/window_open.ogg" type="AudioStream" id=64]
 [ext_resource path="res://System/SFX/open_option.ogg" type="AudioStream" id=65]
 [ext_resource path="res://src/Levels/IGTimer.tscn" type="PackedScene" id=66]
+[ext_resource path="res://src/StageSelect/stage_infos/NeonGrid.tres" type="Resource" id=67]
 
 [sub_resource type="AtlasTexture" id=59]
 atlas = ExtResource( 61 )
@@ -463,6 +464,7 @@ margin_top = 17.0
 margin_right = 220.0
 margin_bottom = 58.0
 rect_min_size = Vector2( 8, 8 )
+focus_neighbour_bottom = NodePath("../NeonGrid")
 action_mode = 0
 script = ExtResource( 7 )
 menu_path = NodePath("../..")
@@ -498,6 +500,7 @@ margin_right = 364.0
 margin_bottom = 181.0
 rect_min_size = Vector2( 8, 8 )
 focus_neighbour_top = NodePath("../Dynasty")
+focus_neighbour_left = NodePath("../NeonGrid")
 focus_neighbour_right = NodePath("../JacobElevator")
 focus_neighbour_bottom = NodePath("../Options")
 action_mode = 0
@@ -506,6 +509,23 @@ menu_path = NodePath("../..")
 stage_info = ExtResource( 26 )
 frame = 2
 intensity = 2
+
+[node name="NeonGrid" type="TextureButton" parent="StageSelectUI/Menu"]
+modulate = Color( 0.407843, 0.792157, 1, 1 )
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 179.0
+margin_top = 91.0
+margin_right = 220.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 8, 8 )
+focus_neighbour_top = NodePath("../SigmaPalace")
+focus_neighbour_left = NodePath("../JacobElevator")
+focus_neighbour_right = NodePath("../Gateway")
+focus_neighbour_bottom = NodePath("../ArmorSetup")
+action_mode = 0
+script = ExtResource( 7 )
+menu_path = NodePath("../..")
+stage_info = ExtResource( 67 )
 
 [node name="NoahsPark" type="TextureButton" parent="StageSelectUI/Menu"]
 modulate = Color( 0.490196, 0.490196, 0.490196, 1 )
@@ -600,6 +620,7 @@ margin_top = 166.0
 margin_right = 20.0
 margin_bottom = 206.0
 rect_min_size = Vector2( 18, 18 )
+focus_neighbour_top = NodePath("../NeonGrid")
 action_mode = 0
 shortcut = SubResource( 1 )
 script = ExtResource( 3 )
@@ -802,6 +823,11 @@ frame = 1
 animation = "long"
 frame = 2
 
+[node name="NeonGrid" parent="button_sprites" instance=ExtResource( 22 )]
+position = Vector2( 199, 112 )
+frames = ExtResource( 34 )
+frame = 1
+
 [node name="on_stage_select" type="Node" parent="."]
 script = ExtResource( 51 )
 subtanks = [ ExtResource( 53 ), ExtResource( 52 ), ExtResource( 54 ), ExtResource( 55 ) ]
@@ -870,6 +896,11 @@ section = "Misc."
 [connection signal="mouse_entered" from="StageSelectUI/Menu/Gateway" to="StageSelectUI/Menu/Gateway" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="StageSelectUI/Menu/Gateway" to="StageSelectUI/Menu/Gateway" method="_on_mouse_exited"]
 [connection signal="pressed" from="StageSelectUI/Menu/Gateway" to="StageSelectUI/Menu/Gateway" method="_on_pressed"]
+[connection signal="focus_entered" from="StageSelectUI/Menu/NeonGrid" to="StageSelectUI/Menu/NeonGrid" method="_on_focus_entered"]
+[connection signal="focus_exited" from="StageSelectUI/Menu/NeonGrid" to="StageSelectUI/Menu/NeonGrid" method="_on_focus_exited"]
+[connection signal="mouse_entered" from="StageSelectUI/Menu/NeonGrid" to="StageSelectUI/Menu/NeonGrid" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="StageSelectUI/Menu/NeonGrid" to="StageSelectUI/Menu/NeonGrid" method="_on_mouse_exited"]
+[connection signal="pressed" from="StageSelectUI/Menu/NeonGrid" to="StageSelectUI/Menu/NeonGrid" method="_on_pressed"]
 [connection signal="focus_entered" from="StageSelectUI/Menu/NoahsPark" to="StageSelectUI/Menu/NoahsPark" method="_on_focus_entered"]
 [connection signal="focus_exited" from="StageSelectUI/Menu/NoahsPark" to="StageSelectUI/Menu/NoahsPark" method="_on_focus_exited"]
 [connection signal="mouse_entered" from="StageSelectUI/Menu/NoahsPark" to="StageSelectUI/Menu/NoahsPark" method="_on_mouse_entered"]

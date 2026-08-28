@@ -59,6 +59,7 @@ func _ready() -> void:
 	black_screen.visible = true
 	white_screen.visible = false
 	boss_hp_filled = false
+	hide_boss_hp()
 	if show_boss_bar:
 		Event.listen("boss_health_appear",self,"setup_boss_health")
 		Event.listen("boss_health_hide",self,"hide_boss_hp")
@@ -218,6 +219,7 @@ func process_blink(delta):
 
 func hide_boss_hp():
 	boss_bar.visible = false
+	boss_hp.value = 0
 	boss_hp_filled = false
 	boss_filling_hp = 0
 	boss = null

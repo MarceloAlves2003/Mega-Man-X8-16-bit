@@ -74,10 +74,7 @@ func on_press() -> void :
 	go_to_next_scene()
 
 func go_to_next_scene() -> void :
-	if already_finished_noahs_park():
-		GameManager.call_deferred("go_to_stage_select")
-	else:
-		get_tree().change_scene("res://System/Screens/CharacterSelection/Character_Selection.tscn")
+	get_tree().change_scene("res://System/Screens/CharacterSelection/Character_Selection.tscn")
 
 func already_finished_noahs_park() -> bool:
 	return "finished_intro" in GameManager.collectibles

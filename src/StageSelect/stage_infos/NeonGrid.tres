@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://src/Actors/Bosses/BossIntro/StageInfo.gd" type="Script" id=1]
+[ext_resource path="res://src/StageSelect/selectables/selectable_gateway.res" type="SpriteFrames" id=2]
+[ext_resource path="res://src/StageSelect/preview/stage_8.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+save_flag = "neongrid_clear"
+beaten_condition = [  ]
+pointer_position = Vector2( 199, 112 )
+should_play_intro = false
+name_id = "NEONGRID"
+collectibles = [ "neongrid_clear" ]
+preview = ExtResource( 3 )
+sprite_frames = ExtResource( 2 )
+animation_beats = [ "idle", "selected" ]
+inverse_sprites = false

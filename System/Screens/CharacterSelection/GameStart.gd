@@ -29,7 +29,9 @@ func on_press() -> void :
 		go_to_next_scene()
 
 func go_to_next_scene() -> void :
-	GameManager.start_level("NoahsPark")
+	CharacterManager.NO_MOVEMENT_CHALLENGE = false
+	CharacterManager.teleport_to_boss = false
+	GameManager.start_level("NeonGrid")
 
 func already_finished_noahs_park() -> bool:
 	return "finished_intro" in GameManager.collectibles

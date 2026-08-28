@@ -22,6 +22,7 @@ var current_slot: int = 0
 var max_slots: int = 10
 var collectibles: Array = [
 	"finished_intro", 
+	"neongrid_clear",
 	
 	"panda_weapon", 
 	"sunflower_weapon", 
