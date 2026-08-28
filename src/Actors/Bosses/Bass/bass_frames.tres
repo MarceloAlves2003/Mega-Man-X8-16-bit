@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=83 format=2]
+[gd_resource type="SpriteFrames" load_steps=92 format=2]
 
 [ext_resource path="res://src/Actors/Bosses/Bass/bass_sheet.png" type="Texture" id=1]
 
@@ -326,6 +326,42 @@ region = Rect2( 160, 952, 80, 80 )
 atlas = ExtResource( 1 )
 region = Rect2( 240, 952, 80, 80 )
 
+[sub_resource type="AtlasTexture" id=82]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1032, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 1 )
+region = Rect2( 80, 1032, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 1 )
+region = Rect2( 160, 1032, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 1 )
+region = Rect2( 240, 1032, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=86]
+atlas = ExtResource( 1 )
+region = Rect2( 320, 1032, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=87]
+atlas = ExtResource( 1 )
+region = Rect2( 400, 1032, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=88]
+atlas = ExtResource( 1 )
+region = Rect2( 480, 1032, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=89]
+atlas = ExtResource( 1 )
+region = Rect2( 560, 1032, 80, 80 )
+
+[sub_resource type="AtlasTexture" id=90]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1112, 80, 80 )
+
 [resource]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
@@ -351,6 +387,11 @@ animations = [ {
 "frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
 "loop": true,
 "name": "jump",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 82 ), SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ) ],
+"loop": false,
+"name": "fall",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ) ],

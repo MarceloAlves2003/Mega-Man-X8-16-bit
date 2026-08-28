@@ -11,6 +11,8 @@ func _Setup() -> void:
 func _Update(delta: float) -> void:
 	process_gravity(delta)
 	force_movement(hop_speed)
+	if character.get_vertical_speed() > 0 and character.get_animation() != "fall":
+		play_animation("fall")
 	if timer > 0.12 and character.is_on_floor():
 		EndAbility()
 
