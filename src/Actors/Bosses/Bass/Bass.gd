@@ -1,6 +1,6 @@
 extends Panda
 
-const LOW_HEALTH_IDLE_THRESHOLD := 0.7
+const LOW_HEALTH_IDLE_THRESHOLD := 0.5
 const NORMAL_IDLE_ANIMATION := "idle"
 const LOW_HEALTH_IDLE_ANIMATION := "idle_low"
 
