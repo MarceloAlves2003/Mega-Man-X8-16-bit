@@ -46,6 +46,10 @@ func create_projectile() -> void:
 	var shot = projectile.instance()
 	get_tree().current_scene.add_child(shot)
 	var direction = character.get_facing_direction()
-	shot.global_position = character.global_position + Vector2(shot_offset.x * direction, shot_offset.y)
+	var offset = get_shot_offset()
+	shot.global_position = character.global_position + Vector2(offset.x * direction, offset.y)
 	shot.set_creator(character)
 	shot.initialize(direction)
+
+func get_shot_offset() -> Vector2:
+	return shot_offset
